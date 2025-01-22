@@ -14,3 +14,4 @@ project ("ALGO_2024-2025")
 # Incluez les sous-projets.
 
 add_subdirectory ("TDP2")
+add_subdirectory ("TDP3-4")
