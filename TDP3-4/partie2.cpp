@@ -28,10 +28,11 @@ void toutesLesPermutations(vector<string>& villes, int debut, int fin) {
     }
 }
 
-void toutesLesPermutations(vector<string>& villes, int debut, int fin);
-int main() {
-	vector<string> vecteurDeNomsDeVille{ "Lille", "Vda"};
-	// string villes = "AB"; // AB | ABCD | ABDEF | ALGORITHME
-	toutesLesPermutations(vecteurDeNomsDeVille, 0, vecteurDeNomsDeVille.size() - 1);
-	return 0;
-}
+
+//void toutesLesPermutations(vector<string>& villes, int debut, int fin);
+//int main() {
+//	vector<string> vecteurDeNomsDeVille{ "Lille", "Vda"};
+//	// string villes = "AB"; // AB | ABCD | ABDEF | ALGORITHME
+//	toutesLesPermutations(vecteurDeNomsDeVille, 0, vecteurDeNomsDeVille.size() - 1);
+//	return 0;
+//}
