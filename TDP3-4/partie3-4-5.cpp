@@ -43,7 +43,7 @@ int main() {
 		tempX = rand() % (tailleCoteCarte + 1);
 		tempY = rand() % (tailleCoteCarte + 1);
 
-		//  ajouter chaque ville
+		//  ajouter chaque ville+tuple dans une map
 		auto tempTuple_indexVille_X_Y = std::make_tuple(i, tempX, tempY);
 		maMapNomsVillesEtCoordonnees.insert(maMapNomsVillesEtCoordonnees.begin(), std::pair<std::string, std::tuple<int, int, int>>(monStringTemp, tempTuple_indexVille_X_Y));
 		vecteurDeNomsDeVille.push_back(monStringTemp);
@@ -56,6 +56,21 @@ int main() {
 	}
 
 	// récupérer l'indice de la ville
-	//int indiceVilleDepart = get<0>((maMapNomsVillesEtCoordonnees.find(*itVecVilles))->second);
-}
+	int indiceVilleDepart = get<0>((maMapNomsVillesEtCoordonnees.find(*itVecVilles))->second);
 
+	if (indexDebut == indexDernier) 
+	{
+		for (const) {
+
+		}
+		//demander le code
+			cout << uneVille << "\t\t";
+		int distanceTotaleTournee = calculTotalDistanceTournee(vecVillles, DIST, maMapNomsVillesEtCoordonnees);
+		toutesLesTourneesEtLeurDistanceTotale[indiceCombinaison] = std::make_pair(vecVillles, distanceTotaleTournee);
+	}
+	
+
+
+
+
+}

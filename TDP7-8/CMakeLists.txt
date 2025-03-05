@@ -1,6 +1,6 @@
 # Ajoutez une source à l'exécutable de ce projet.
 
-add_executable(TDP3-4 "partie2.cpp" "partie3-4-5.cpp")
+add_executable(TDP7-8 "partie2.cpp")
 
 
 # TODO: Ajoutez des tests et installez des cibles si nécessaire.

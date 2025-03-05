@@ -15,3 +15,5 @@ project ("ALGO_2024-2025")
 
 add_subdirectory ("TDP2")
 add_subdirectory ("TDP3-4")
+add_subdirectory ("TDP5-6")
+add_subdirectory ("TDP7-8")
