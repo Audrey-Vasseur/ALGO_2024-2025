@@ -23,77 +23,108 @@ int pointChemin[TAILLEDUGRAPHE][TAILLEDUGRAPHE];   // sauvegarde les noeuds inte
 
 int main(){
 
-// Ajout des sommets des villes :
-vecSommets.push_back("Lille");
-vecSommets.push_back("Lens");
-vecSommets.push_back("Paris");
-vecSommets.push_back("Bourges");
-vecSommets.push_back("Clermont Ferrand");
-vecSommets.push_back("Montpellier");
+	// Ajout des sommets des villes :
+	vecSommets.push_back("Lille");
+	vecSommets.push_back("Lens");
+	vecSommets.push_back("Paris");
+	vecSommets.push_back("Bourges");
+	vecSommets.push_back("Clermont Ferrand");
+	vecSommets.push_back("Montpellier");
 
-// Affichage des noms des villes
-for (int i = 0; i < vecSommets.size(); i++)
-{
-	cout << "Nom de la ville : " << vecSommets[i] << endl;
-}
-
-
-// Mettre toutes les distances des arcs à INFINI 
-for (int i = 0; i < TAILLEDUGRAPHE; i++)
-{
-	for (int j = 0; j < TAILLEDUGRAPHE; j++)
+	// Affichage des noms des villes
+	for (int i = 0; i < vecSommets.size(); i++)
 	{
-		arcs[i][j] = INFINI;
+		cout << "Nom de la ville : " << vecSommets[i] << endl;
 	}
-}
 
-// On remplace par de vraies distances
-arcs[0][1] = 40;  // Lille -> Lens
-arcs[0][2] = 230;  // Lille -> Paris
-arcs[2][3] = 250;  // Paris -> Bourges
-arcs[2][4] = 425;  // Paris -> Clermont Ferrand
-arcs[3][4] = 190;  // Bourges -> Clermont Ferrand
-arcs[4][5] = 300;  // Clermont Ferrand -> Montpellier
 
-// Affichage des distances
-cout << "\nDistance entre " << vecSommets[0] <<" et " << vecSommets[1] <<": " << arcs[0][1] << endl;
-cout << "Distance entre " << vecSommets[0] << " et " << vecSommets[2] << ": " << arcs[0][2] << endl;
-cout << "Distance entre " << vecSommets[2] << " et " << vecSommets[3] << ": " << arcs[2][3] << endl;
-cout << "Distance entre " << vecSommets[2] << " et " << vecSommets[4] << ": " << arcs[2][4] << endl;
-cout << "Distance entre " << vecSommets[3] << " et " << vecSommets[4] << ": " << arcs[3][4] << endl;
-cout << "Distance entre " << vecSommets[4] << " et " << vecSommets[5] << ": " << arcs[4][5] << endl;
-
-// Initialisation de pointChemin
-for (int i = 0; i < vecSommets.size(); i++)
-{
-	for (int j = 0; j < vecSommets.size(); j++)
-	{
-		if (arcs[i][j] == INFINI)
-		{
-			pointChemin[i][j] = -1;
-		}
-		else
-		{
-			pointChemin[i][j] = i;
-		}
-	}
-}
-
-// Implémentation de l'algorithme de Floyd-Warshall
-for (int i = 0; i < TAILLEDUGRAPHE; i++)
-{
+	// Mettre toutes les distances des arcs à INFINI 
 	for (int i = 0; i < TAILLEDUGRAPHE; i++)
 	{
-		for (int i = 0; i < TAILLEDUGRAPHE; i++)
+		for (int j = 0; j < TAILLEDUGRAPHE; j++)
 		{
-			if (cheminCourt[0][] + cheminCourt[][] < cheminCourt[][])
-			{
+			arcs[i][j] = INFINI;
+		}
+	}
 
+	// On remplace par de vraies distances
+	arcs[0][1] = 40;  // Lille -> Lens
+	arcs[0][2] = 230;  // Lille -> Paris
+	arcs[2][3] = 250;  // Paris -> Bourges
+	arcs[2][4] = 425;  // Paris -> Clermont Ferrand
+	arcs[3][4] = 190;  // Bourges -> Clermont Ferrand
+	arcs[4][5] = 300;  // Clermont Ferrand -> Montpellier
+
+	// Affichage des distances
+	cout << "\nDistance entre " << vecSommets[0] <<" et " << vecSommets[1] <<": " << arcs[0][1] << endl;
+	cout << "Distance entre " << vecSommets[0] << " et " << vecSommets[2] << ": " << arcs[0][2] << endl;
+	cout << "Distance entre " << vecSommets[2] << " et " << vecSommets[3] << ": " << arcs[2][3] << endl;
+	cout << "Distance entre " << vecSommets[2] << " et " << vecSommets[4] << ": " << arcs[2][4] << endl;
+	cout << "Distance entre " << vecSommets[3] << " et " << vecSommets[4] << ": " << arcs[3][4] << endl;
+	cout << "Distance entre " << vecSommets[4] << " et " << vecSommets[5] << ": " << arcs[4][5] << endl;
+
+	// Initialisation de pointChemin
+	for (int i = 0; i < vecSommets.size(); i++)
+	{
+		for (int j = 0; j < vecSommets.size(); j++)
+		{
+			if (arcs[i][j] == INFINI)
+			{
+				pointChemin[i][j] = -1;
+			}
+			else
+			{
+				pointChemin[i][j] = i;
 			}
 		}
 	}
-}
 
 
+	// Initialisation de la matrice cheminCourt avec les distances initiales ou INFINI
+	for (int i = 0; i < TAILLEDUGRAPHE; i++)
+	{
+		for (int j = 0; j < TAILLEDUGRAPHE; j++)
+		{
+			if (pointChemin[i][j] != -1)
+			{
+				cheminCourt[i][j] = arcs[i][j]; // Coût de l'arc si existant
+			}
+			else
+			{
+				cheminCourt[i][j] = INFINI; // Pas d'arc : distance infinie
+			}
+		}
+	}
 
+
+	// Implémentation de l'algorithme de Floyd-Warshall
+	for (int sommetIntermediaire = 0; sommetIntermediaire < TAILLEDUGRAPHE; sommetIntermediaire++)
+	{
+		for (int origine = 0; origine < TAILLEDUGRAPHE; origine++)
+		{
+			for (int destination = 0; destination < TAILLEDUGRAPHE; destination++)
+			{
+				if (cheminCourt[origine][sommetIntermediaire] != INFINI && cheminCourt[sommetIntermediaire][destination] != INFINI &&
+					cheminCourt[origine][sommetIntermediaire] + cheminCourt[sommetIntermediaire][destination] < cheminCourt[origine][destination])
+				{
+					cheminCourt[origine][destination] = cheminCourt[origine][sommetIntermediaire] + cheminCourt[sommetIntermediaire][destination];
+					pointChemin[origine][destination] = sommetIntermediaire;
+				}
+			}
+		}
+	}
+
+	// Affichage des résultats
+	cout << "\nMatrice des plus courts chemins :\n";
+	for (int i = 0; i < TAILLEDUGRAPHE; i++)
+	{
+		for (int j = 0; j < TAILLEDUGRAPHE; j++)
+		{
+			if (cheminCourt[i][j] == INFINI)
+				cout << "INF ";
+			else
+				cout << cheminCourt[i][j] << " ";
+		}
+		cout << endl;
+	}
 }
